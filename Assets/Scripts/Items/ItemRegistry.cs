@@ -4,17 +4,12 @@ using System.Collections;
 
 public class ItemRegistry : MonoBehaviour
 {
-    public static ItemRegistry Instance { get; private set; }
-
     public List<GameObject> itemPrefabs;
 
-    void Start()
+    public GameObject GetRandomPrefab()
     {
-        Instance = this;
-    }
+        GameObject selectedItemPrefab = itemPrefabs[Random.Range(0, itemPrefabs.Count)];
 
-    public void InstantiateRandomItem()
-    {
-        
+        return selectedItemPrefab;
     }
 }
