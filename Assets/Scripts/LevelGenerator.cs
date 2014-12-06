@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
-public class LevelGenerator : MonoBehaviour {
+public class LevelGenerator  {
 	public string levelName;
-    public TextAsset levelAsset;
 	private List<List<char>> list = new List<List<char>> ();
 	private List<char> listLine;
 	public GameObject wallTile;
@@ -18,9 +17,11 @@ public class LevelGenerator : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-        levelName = levelAsset.text;
-        readLevel();
+	void Start (string levelName, GameObject wallTile, GameObject wallTileCollered)
+	{
+	    this.levelName = levelName;
+	    this.wallTile = wallTile;
+	    this.wallTileCollered = wallTileCollered;
 	}
 
 	public void readLevel(){
@@ -41,25 +42,25 @@ public class LevelGenerator : MonoBehaviour {
 				{
 					case 'R':
 					Debug.Log (sign);
-					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
+					wallTileForCollering = ((GameObject)GameObject.Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
 					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Red;
 					break;
 
 					case 'G':
 					Debug.Log (sign);
-					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX,-countY, 0), Quaternion.identity));
+                    wallTileForCollering = ((GameObject)GameObject.Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
 					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Green;
 					break;
 
 					case 'B':
 					Debug.Log (sign);
-					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX,-countY, 0), Quaternion.identity));
+                    wallTileForCollering = ((GameObject)GameObject.Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
 					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Blue;
 					break;
 
 					case 'W':
 					Debug.Log (sign);
-					Instantiate(wallTile, new Vector3(countX, -countY, 0), Quaternion.identity);
+                    GameObject.Instantiate(wallTile, new Vector3(countX, -countY, 0), Quaternion.identity);
 					break;
 
 				}
