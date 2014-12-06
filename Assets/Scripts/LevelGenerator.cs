@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class LevelGenerator : MonoBehaviour {
 	public string levelName;
@@ -23,8 +24,9 @@ public class LevelGenerator : MonoBehaviour {
 	}
 
 	public void readLevel(){
-		List<string> lines = new List<string>(levelName.Split ('\n'));
-		foreach(string line in lines){
+		List<string> lines = new List<string>(levelName.Split (new string[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries));
+		Debug.Log (lines.Count);
+		foreach(string line in lines){	
 			listLine = new List<char> (line.ToCharArray ());
 			list.Add (listLine);
 		}
@@ -39,32 +41,32 @@ public class LevelGenerator : MonoBehaviour {
 				{
 					case 'R':
 					Debug.Log (sign);
-					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX, countY, 0), Quaternion.identity));
+					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
 					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Red;
 					break;
 
 					case 'G':
 					Debug.Log (sign);
-					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX, countY, 0), Quaternion.identity));
+					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX,-countY, 0), Quaternion.identity));
 					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Green;
 					break;
 
 					case 'B':
 					Debug.Log (sign);
-					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX, countY, 0), Quaternion.identity));
+					wallTileForCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX,-countY, 0), Quaternion.identity));
 					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Blue;
 					break;
 
 					case 'W':
 					Debug.Log (sign);
-					Instantiate(wallTile, new Vector3(countX, countY, 0), Quaternion.identity);
+					Instantiate(wallTile, new Vector3(countX, -countY, 0), Quaternion.identity);
 					break;
 
 				}
-				countY++;
+				countX++;
 			}
-			countX++;
-			countY = 0;
+			countY++;
+			countX = 0;
 		}
 
 
