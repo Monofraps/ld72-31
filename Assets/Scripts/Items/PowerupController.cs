@@ -2,15 +2,12 @@
 using System.Collections;
 
 public class PowerupController : MonoBehaviour {
-	ItemRegistry itemRegistry = new ItemRegistry();
-	GameObject powerUp;
-    public void Callback()
-    {
-		getPowerup ();
-		Debug.Log("sef");
-    }
-	public void getPowerup(){
-		powerUp = itemRegistry.GetRandomPrefab();
-		GameObject.Instantiate (powerUp);
+	public ItemRegistry itemRegistry;
+    public ItemPickupNotification pickupNotification;
+
+	public void InstantiatePowerup(){
+		GameObject powerUp = itemRegistry.GetRandomPrefab();
+		ItemBase powerupInstance = ((GameObject)Instantiate (powerUp)).GetComponent<ItemBase>();
+        pickupNotification.ShowPickupNotification(powerupInstance);
 	}
 }

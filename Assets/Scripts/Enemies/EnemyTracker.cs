@@ -8,7 +8,7 @@ public class EnemyTracker : MonoBehaviour
 
     public List<GameObject> enemyTypes; 
 
-    private List<EnemyBase> enemies;
+    private List<EnemyBase> enemies = new List<EnemyBase>();
         
     void Start()
     {
