@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemBase : MonoBehaviour {
+public class ItemBase : MonoBehaviour
+{
+    public string itemName;
 
-	// Use this for initialization
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public string GetDisplayName()
+    {
+        return itemName;
+    }
 }
