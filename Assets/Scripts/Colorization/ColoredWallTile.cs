@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using System.Collections;
 
 public class ColoredWallTile : MonoBehaviour
@@ -18,5 +19,23 @@ public class ColoredWallTile : MonoBehaviour
     void Start()
     {
         TileColor = tileColor;
+        LevelStateController.Instance.OnPlayerColorChanged += PlayerColorChanged;
+    }
+
+    void Destroy()
+    {
+        LevelStateController.Instance.OnPlayerColorChanged -= PlayerColorChanged;
+    }
+
+    void PlayerColorChanged(ColorizationColors color)
+    {
+        if (color == tileColor)
+        {
+            collider2D.enabled = false;
+        }
+        else
+        {
+            collider2D.enabled = true;
+        }
     }
 }
