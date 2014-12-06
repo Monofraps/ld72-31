@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ï»¿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System;
@@ -9,6 +9,7 @@ public class LevelGenerator  {
 	private List<char> listLine;
 	public GameObject wallTile;
 	public GameObject wallTileCollered;
+	public GameObject colorizeField;
 	public Color redColor;
 	public Color greenColor;
 	public Color blueColor;
@@ -33,7 +34,8 @@ public class LevelGenerator  {
 		}
 		int countX = 0;
 		int countY = 0;
-		GameObject wallTileForCollering;
+		GameObject forCollering;
+
 		foreach(List<char> listLine in list){
 			foreach(char sign in listLine){
 
@@ -41,27 +43,36 @@ public class LevelGenerator  {
 				switch (sign) 
 				{
 					case 'R':
-					Debug.Log (sign);
-					wallTileForCollering = ((GameObject)GameObject.Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
-					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Red;
+					forCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
+					forCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Red;
 					break;
 
 					case 'G':
-					Debug.Log (sign);
-                    wallTileForCollering = ((GameObject)GameObject.Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
-					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Green;
+					forCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX,-countY, 0), Quaternion.identity));
+					forCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Green;
 					break;
 
 					case 'B':
-					Debug.Log (sign);
-                    wallTileForCollering = ((GameObject)GameObject.Instantiate(wallTileCollered, new Vector3(countX, -countY, 0), Quaternion.identity));
-					wallTileForCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Blue;
+					forCollering = ((GameObject)Instantiate(wallTileCollered, new Vector3(countX,-countY, 0), Quaternion.identity));
+					forCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Blue;
 					break;
 
 					case 'W':
-					Debug.Log (sign);
-                    GameObject.Instantiate(wallTile, new Vector3(countX, -countY, 0), Quaternion.identity);
+					Instantiate(wallTile, new Vector3(countX, -countY, 0), Quaternion.identity);
 					break;
+
+				case 'r':
+					forCollering = ((GameObject)Instantiate(colorizeField, new Vector3(countX, -countY, 0), Quaternion.identity));
+					forCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Red;
+						break;
+				case 'g':
+					forCollering = ((GameObject)Instantiate(colorizeField, new Vector3(countX,-countY, 0), Quaternion.identity));
+					forCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Green;
+						break;
+				case 'b':
+					forCollering = ((GameObject)Instantiate(colorizeField, new Vector3(countX,-countY, 0), Quaternion.identity));
+					forCollering.GetComponent<ColorizerField>().fieldColor= ColorizationColors.Blue;
+						break;
 
 				}
 				countX++;
