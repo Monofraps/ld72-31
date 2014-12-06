@@ -8,7 +8,7 @@ public class PickupField : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             PowerupController powerupController = collision.gameObject.GetComponent<PowerupController>();
-            powerupController.Callback();
+            powerupController.InstantiatePowerup();
 
             GameObject.Destroy(gameObject);
         }

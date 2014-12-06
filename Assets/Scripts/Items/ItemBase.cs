@@ -4,17 +4,15 @@ using System.Collections;
 public class ItemBase : MonoBehaviour
 {
     public string itemName;
-
-	void Start () {
-	
-	}
-	
-	void Update () {
-	
-	}
+    public Sprite itemSprite;
 
     public string GetDisplayName()
     {
         return itemName;
+    }
+
+    public Sprite GetSprite()
+    {
+        return itemSprite;
     }
 }

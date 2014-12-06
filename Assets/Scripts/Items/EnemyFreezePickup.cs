@@ -25,7 +25,7 @@ public class EnemyFreezePickup : ItemBase
     void Update()
     {
         elapsedTime += Time.deltaTime;
-
+    
         if (elapsedTime >= duration)
         {
             foreach (EnemyBase enemy in enemyTracker.GetAllEnemies())
