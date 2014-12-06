@@ -22,7 +22,7 @@ public class EnemyTracker : MonoBehaviour
 
     public void SpawnEnemy(Vector3 spawnPoint, Quaternion initialRotation)
     {
-        GameObject enemyType = enemyTypes[Random.RandomRange(0, enemyTypes.Count)];
+        GameObject enemyType = enemyTypes[Random.Range(0, enemyTypes.Count)];
 
         GameObject enemyInstance = (GameObject)Instantiate(enemyType, spawnPoint, initialRotation);
         EnemyBase enemy = enemyInstance.GetComponent<EnemyBase>();
