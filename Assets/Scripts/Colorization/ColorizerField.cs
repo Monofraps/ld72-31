@@ -9,7 +9,7 @@ public class ColorizerField : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            collider.gameObject.GetComponent<PlayerColorController>().ChangePlayerColor(fieldColor);
+            collider.gameObject.GetComponent<PlayerColorController>().PlayerColor = fieldColor;
         }
     }
 }

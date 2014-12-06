@@ -4,27 +4,14 @@ using System.Collections;
 public class PlayerColorController : MonoBehaviour
 {
     public ColorizationColors playerColor;
-    public Color redColor;
-    public Color greenColor;
-    public Color blueColor;
 
-    public void ChangePlayerColor(ColorizationColors fieldColor)
+    public ColorizationColors PlayerColor
     {
-        playerColor = fieldColor;
-
-        switch (playerColor)
+        get { return playerColor; }
+        set
         {
-                case ColorizationColors.Red:
-                ((SpriteRenderer) renderer).color = redColor;
-                break;
-
-                case ColorizationColors.Green:
-                ((SpriteRenderer)renderer).color = greenColor;
-                break;
-
-                case ColorizationColors.Blue:
-                ((SpriteRenderer)renderer).color = blueColor;
-                break;
+            playerColor = value;
+            ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(playerColor);            
         }
     }
 }
