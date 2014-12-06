@@ -16,26 +16,22 @@ public class ColoredWallTile : MonoBehaviour
         }
     }
 
+    private LevelStateController levelStateController;
+
     void Start()
     {
         TileColor = tileColor;
-        LevelStateController.Instance.OnPlayerColorChanged += PlayerColorChanged;
+        levelStateController = transform.parent.gameObject.GetComponent<LevelStateController>();
+        levelStateController.OnPlayerColorChanged += PlayerColorChanged;
     }
 
     void Destroy()
     {
-        LevelStateController.Instance.OnPlayerColorChanged -= PlayerColorChanged;
+        levelStateController.OnPlayerColorChanged -= PlayerColorChanged;
     }
 
     void PlayerColorChanged(ColorizationColors color)
     {
-        if (color == tileColor)
-        {
-            collider2D.enabled = false;
-        }
-        else
-        {
-            collider2D.enabled = true;
-        }
+        collider2D.enabled = color != tileColor;
     }
 }

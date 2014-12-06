@@ -12,7 +12,7 @@ public class PlayerColorController : MonoBehaviour
         {
             playerColor = value;
             ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(playerColor);
-            LevelStateController.Instance.PublicPlayerColorChangeEvent(playerColor);
+            GameController.Instance.PublishPlayerColorChangeEvent(playerColor);
         }
     }
 }
