@@ -4,6 +4,7 @@ using System.Collections;
 
 public class LevelGenerator : MonoBehaviour {
 	public string levelName;
+    public TextAsset levelAsset;
 	private List<List<char>> list = new List<List<char>> ();
 	private List<char> listLine;
 	public GameObject wallTile;
@@ -12,7 +13,8 @@ public class LevelGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		readLevel ();
+        levelName = levelAsset.text;
+        readLevel();
 	}
 
 	public void readLevel(){
