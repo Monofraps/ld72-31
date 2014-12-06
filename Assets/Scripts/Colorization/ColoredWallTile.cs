@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ColoredWallTile : MonoBehaviour
 {
-    private ColorizationColors tileColor = ColorizationColors.Red;
+    public ColorizationColors tileColor = ColorizationColors.Red;
 
     public ColorizationColors TileColor
     {
@@ -13,5 +13,10 @@ public class ColoredWallTile : MonoBehaviour
             tileColor = value;
             ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(tileColor);
         }
+    }
+
+    void Start()
+    {
+        TileColor = tileColor;
     }
 }

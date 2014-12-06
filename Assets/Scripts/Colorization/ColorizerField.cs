@@ -5,6 +5,11 @@ public class ColorizerField : MonoBehaviour
 {
     public ColorizationColors fieldColor;
 
+    void Start()
+    {
+        ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(fieldColor);
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
