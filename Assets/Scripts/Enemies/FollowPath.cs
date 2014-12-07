@@ -3,6 +3,8 @@ using System.Collections;
 
 public class FollowPath : MonoBehaviour
 {
+    public float initialDelay = 0;
+    private float timer = 0;
     public enum FollowStrategy
     {
         Circle,
@@ -22,6 +24,7 @@ public class FollowPath : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        timer = 0;
         if (path.points.Count > 0)
         {
             transform.position = path.points[0];
@@ -34,6 +37,11 @@ public class FollowPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        if (timer < initialDelay)
+        {
+            return;
+        }
         if (path.points.Count < 2)
         {
             return;
