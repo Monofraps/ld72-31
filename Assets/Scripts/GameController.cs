@@ -8,12 +8,23 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
-    public int Coins { get; set; }
+    private int coins = 0;
+
+    public int Coins
+    {
+        get { return coins; }
+        set
+        {
+            coins = value;
+            coinCounterText.SetCoinCount(coins);
+        }
+    }
 
     public GameObject player;
     public List<GameObject> levelPrefabs;
-    public Text timerText;
-    public Text coinCounterText;
+    public TimerText timerText;
+    public CoinCounterText coinCounterText;
+    public PointsText pointsText;
 
     private LevelStateController currentLevel;
     private int currentLevelIndex = 0;
@@ -33,17 +44,14 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.R) && !IsLastLevel())
         {
             RestartLevel();
         }
 
         timer += Time.deltaTime;
 
-        int minutes = Mathf.FloorToInt((float) (timer/60f));
-        timerText.text = String.Format("{0}:{1:00.0}", minutes, (timer - minutes * 60f));
-
-        coinCounterText.text = String.Format("{0}", Coins);
+        timerText.SetTimeInSeconds((float)timer);
     }
 
     public void PublishPlayerColorChangeEvent(ColorizationColors newPlayerColor)
@@ -71,10 +79,25 @@ public class GameController : MonoBehaviour
 
         }
 
-        if (currentLevelIndex == levelPrefabs.Count - 1)
+        if (IsLastLevel())
         {
-            player.SetActive(false);
+            LoadLastLevel();
         }
+    }
+
+    private void LoadLastLevel()
+    {
+        player.SetActive(false);
+        timerText.IsVisible = false;
+        coinCounterText.IsVisible = false;
+
+        pointsText.IsVisible = true;
+        pointsText.SetPoints(123456);
+    }
+
+    private bool IsLastLevel()
+    {
+        return currentLevelIndex == levelPrefabs.Count - 1;
     }
 
     public void RestartLevel()
