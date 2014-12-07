@@ -17,8 +17,11 @@ public class PickupField : MonoBehaviour {
             GameObject obj = (GameObject)Instantiate(powerUp);
             ItemBase item = obj.GetComponent<ItemBase>();
 
-            PowerupController powerupController = collision.gameObject.GetComponent<PowerupController>();
-            powerupController.CurrentItem = item;
+            if (!item.activateOnStart)
+            {
+                PowerupController powerupController = collision.gameObject.GetComponent<PowerupController>();
+                powerupController.CurrentItem = item;
+            }
 
             GameObject.Destroy(gameObject);
 

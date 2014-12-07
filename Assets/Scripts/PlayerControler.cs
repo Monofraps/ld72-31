@@ -11,7 +11,9 @@ public class PlayerControler : MonoBehaviour
     private PlayerWiggle playerWiggle;
     private Vector3 teleportPos;
     private float rotation;
+    private Vector2 previousVelocity;
     public GameObject shieldObject;
+    public bool IsControlInverted { get; set; }
     private bool shield;
     public bool Shield
     {
@@ -72,24 +74,22 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         Vector2 velocity = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.LeftArrow))
+
+        velocity.x = Input.GetAxis("Horizontal") * speed * (IsControlInverted ? -1 : 1);
+        velocity.y = Input.GetAxis("Vertical") * speed * (IsControlInverted ? -1 : 1);
+
+        if (velocity.magnitude == 0 && previousVelocity.magnitude != 0)
         {
-            rotation = 90.0f;
-            velocity.x = -speed;
-        } else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            rotation = -90.0f;
-            velocity.x = +speed;
+            float sign = Mathf.Sign(Vector3.Dot(Vector3.forward, Vector3.Cross(Vector3.up, previousVelocity)));
+            rotation = Vector3.Angle(Vector3.up, previousVelocity)*sign;
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        else
         {
-            rotation = 0.0f;
-            velocity.y = +speed;
-        } else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            rotation = 180.0f;
-            velocity.y = -speed;
+            float sign = Mathf.Sign(Vector3.Dot(Vector3.forward, Vector3.Cross(Vector3.up, velocity)));
+            rotation = Vector3.Angle(Vector3.up, velocity)*sign;
+            previousVelocity = velocity;
         }
+
         playerRigidbody2d.velocity = velocity;
         transform.rotation = Quaternion.Euler(new Vector3(0,0, rotation + playerWiggle.rotationOffset));
 
