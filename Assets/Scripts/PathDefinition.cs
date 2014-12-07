@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 public class PathDefinition : MonoBehaviour
 {
-    public List<Transform> points { get; private set; }
+    public List<Vector2> points { get; private set; }
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
-        points = new List<Transform>();
+        points = new List<Vector2>();
         foreach (Transform child in transform)
         {
-            points.Add(child);
+            points.Add(new Vector2(child.position.x, child.position.y));
         }
     }
     

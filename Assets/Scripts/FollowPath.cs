@@ -16,9 +16,9 @@ public class FollowPath : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (path.points.Count > 1)
+        if (path.points.Count > 0)
         {
-            transform.position = path.points[0].position;
+            transform.position = path.points[0];
             targetPoint = 1;
         }
 
@@ -32,8 +32,10 @@ public class FollowPath : MonoBehaviour
         {
             return;
         }
-        transform.position = Vector3.MoveTowards(transform.position, path.points[targetPoint].position, speed * Time.deltaTime);
-        if (transform.position == path.points[targetPoint].position)
+
+        transform.position = Vector3.MoveTowards(transform.position, path.points [targetPoint], speed * Time.deltaTime);
+        if (transform.position.x == path.points [targetPoint].x &&
+            transform.position.y == path.points [targetPoint].y )
         {
             if (targetPoint == path.points.Count - 1)
             {
