@@ -68,6 +68,8 @@ public class GameController : MonoBehaviour
 
         currentLevel = ((GameObject)Instantiate(levelPrefabs[currentLevelIndex])).GetComponent<LevelStateController>();
         EnemyTracker.Instance.LoadEnemies(currentLevel.gameObject);
+        player.GetComponent<PlayerColorController>().PlayerColor = ColorizationColors.White;
+
 
         // Find and set spawnpoint
         foreach (Transform t in currentLevel.transform)
