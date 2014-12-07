@@ -67,6 +67,7 @@ public class GameController : MonoBehaviour
         }
 
         currentLevel = ((GameObject)Instantiate(levelPrefabs[currentLevelIndex])).GetComponent<LevelStateController>();
+        currentLevel.gameObject.SetActive(true);
         EnemyTracker.Instance.LoadEnemies(currentLevel.gameObject);
         player.GetComponentInChildren<PlayerColorController>().PlayerColor = ColorizationColors.White;
 
