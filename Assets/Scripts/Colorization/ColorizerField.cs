@@ -18,7 +18,7 @@ public class ColorizerField : MonoBehaviour
             ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(fieldColor);
         }
     }
-    
+
     void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
