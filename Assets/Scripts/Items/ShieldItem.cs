@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpeedUpItem : ItemBase
+public class ShieldItem : ItemBase
 {
-
-    public float speedMultiplier;
     public float duration;
     private PlayerControler playerControler;   
-
+    
     public override void Activate()
     {
         playerControler = PlayerControler.FindInScene();
-        playerControler.speed *= speedMultiplier;
-        Invoke("ResetPlayerSpeed", duration);
+        playerControler.Shield = true;
+        Invoke("DeactivateShield", duration);
     }
 
-    void ResetPlayerSpeed()
+    private void DeactivateShield()
     {
-        playerControler.speed /= speedMultiplier;
+        playerControler.Shield = false;
         Destroy(gameObject);
     }
+    
+
+
 }

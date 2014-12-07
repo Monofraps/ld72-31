@@ -9,15 +9,45 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody2D playerRigidbody2d;
     private Animator animator;
     private float rotation;
-    private int life;
+    public GameObject shieldObject;
+    private bool shield;
+    public bool Shield
+    {
+        set
+        {
+            shield = value;
+            shieldObject.SetActive(shield);
+        }
+        get
+        {
+            return shield;
+        }
+    }
+
+    public static PlayerControler FindInScene()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            throw new UnityException("No player found in the scene.");
+        }
+        PlayerControler playerControler = player.GetComponent<PlayerControler>();
+        if (playerControler == null)
+        {
+            throw new UnityException("No PlayerControler attached to Player Gameobject.");
+        }
+        return playerControler;
+    }
+
 
     // Use this for initialization
     void Start()
     {
         playerRigidbody2d = rigidbody2D;
         animator = GetComponent<Animator>();
-        life = 1;
+        Shield = false;
     }
+
     
     // Update is called once per frame
     void Update()
@@ -52,11 +82,13 @@ public class PlayerControler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            life -= 1;
-            if(life <= 0)
+            if(Shield)
             {
-                GameController.Instance.RestartLevel();
+                // Got lucky this time. Return... for now muhahahaha
+                return;
             }
+            // DIEEEEEEEEEE
+            GameController.Instance.RestartLevel();
         }
     }
 }
