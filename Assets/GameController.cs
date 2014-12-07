@@ -12,6 +12,11 @@ public class GameController : MonoBehaviour
     private LevelStateController currentLevel;
     private int currentLevelIndex = 0;
 
+    private void Awake()
+    {
+        (GameObject.Find("__LevelRoots")).SetActive(false);
+    }
+
     private void Start()
     {
         Instance = this;
@@ -26,6 +31,7 @@ public class GameController : MonoBehaviour
     private void LoadNextLevel()
     {
         currentLevel = ((GameObject)Instantiate(levelPrefabs[currentLevelIndex])).GetComponent<LevelStateController>();
+        EnemyTracker.Instance.LoadEnemies(currentLevel.gameObject);
     }
 
     public void ProgressLevel()

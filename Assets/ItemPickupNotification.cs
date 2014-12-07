@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class ItemPickupNotification : MonoBehaviour
 {
+    public static ItemPickupNotification Instance { get; private set; }
+
     public Text text;
     public Image itemImage;
 
@@ -14,6 +16,7 @@ public class ItemPickupNotification : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         text.text = "";
         itemImage.gameObject.SetActive(false);
     }
