@@ -3,6 +3,12 @@ using System.Collections;
 
 public class FollowPath : MonoBehaviour
 {
+    public enum FollowStrategy
+    {
+        Circle,
+        Pingpong
+    }
+    public FollowStrategy followStrategy = FollowStrategy.Pingpong;
     public float Speed{ get; set; }
     public PathDefinition path;
     private int targetPoint;
@@ -37,21 +43,36 @@ public class FollowPath : MonoBehaviour
         if (transform.position.x == path.points [targetPoint].x &&
             transform.position.y == path.points [targetPoint].y )
         {
-            if (targetPoint == path.points.Count - 1)
+            if(followStrategy == FollowStrategy.Pingpong)
             {
-                direction = Direction.Down;
-            } else if(targetPoint == 0)
-            {
-                direction = Direction.Up;
+                if (targetPoint == path.points.Count - 1)
+                {
+                    direction = Direction.Down;
+                } else if(targetPoint == 0)
+                {
+                    direction = Direction.Up;
+                }
+                
+                if(direction == Direction.Up)
+                {
+                    ++targetPoint;
+                }else{
+                    --targetPoint;
+                }
             }
-
-            if(direction == Direction.Up)
+            else
             {
-                ++targetPoint;
-            }else{
-                --targetPoint;
+                if (targetPoint == path.points.Count - 1)
+                {
+                    targetPoint = 0;
+                    
+                } else
+                {
+                    ++targetPoint;
+                }
             }
         }
+
     }
 
    
