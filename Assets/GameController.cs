@@ -49,12 +49,12 @@ public class GameController : MonoBehaviour
         currentLevel.gameObject.SetActive(false);
         Destroy(currentLevel.gameObject);
         LoadNextLevel();
+        player.GetComponent<PlayerColorController>().PlayerColor = ColorizationColors.White;
     }
 
     public void ProgressLevel()
     {
         currentLevel.gameObject.SetActive(false);
-//      Destroy(Camera.current.gameObject);
         Destroy(currentLevel.gameObject);
         ++currentLevelIndex;
         LoadNextLevel();

@@ -27,6 +27,9 @@ public class ColorResolver : MonoBehaviour
 
                 case ColorizationColors.Blue:
                 return blueColor;
+
+                case ColorizationColors.White:
+                return Color.white;
         }
 
         throw new UnityException("Unexpected control flow.");

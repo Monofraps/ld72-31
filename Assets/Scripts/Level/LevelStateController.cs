@@ -9,6 +9,9 @@ public class LevelStateController : MonoBehaviour
 
     public void PublishPlayerColorChangeEvent(ColorizationColors newPlayerColor)
     {
-        OnPlayerColorChanged(newPlayerColor);
+        if (OnPlayerColorChanged != null)
+        {
+            OnPlayerColorChanged(newPlayerColor);
+        }
     }
 }
