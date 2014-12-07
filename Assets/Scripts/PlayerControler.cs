@@ -9,12 +9,14 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody2D playerRigidbody2d;
     private Animator animator;
     private float rotation;
+    private int life;
 
     // Use this for initialization
     void Start()
     {
         playerRigidbody2d = rigidbody2D;
         animator = GetComponent<Animator>();
+        life = 1;
     }
     
     // Update is called once per frame
@@ -44,5 +46,17 @@ public class PlayerControler : MonoBehaviour
 
 
         animator.SetFloat("Velocity", Mathf.Abs(velocity.x + velocity.y));
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            life -= 1;
+            if(life <= 0)
+            {
+                Debug.Log("Player dead");
+            }
+        }
     }
 }
