@@ -10,11 +10,15 @@ public class ColorizerField : MonoBehaviour
         ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(fieldColor);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            collider.gameObject.GetComponent<PlayerColorController>().PlayerColor = fieldColor;
+            if (collider.OverlapPoint(new Vector2(transform.position.x, transform.position.y)))
+            {
+                collider.gameObject.GetComponent<PlayerColorController>().PlayerColor = fieldColor;
+            }
+
         }
     }
 }
