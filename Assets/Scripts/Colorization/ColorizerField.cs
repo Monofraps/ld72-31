@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class ColorizerField : MonoBehaviour
 {
     public ColorizationColors fieldColor;
@@ -10,6 +11,14 @@ public class ColorizerField : MonoBehaviour
         ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(fieldColor);
     }
 
+    void Update()
+    {
+        if (Application.isEditor)
+        {
+            ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(fieldColor);
+        }
+    }
+    
     void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))

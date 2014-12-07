@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class ColorResolver : MonoBehaviour
 {
     public static ColorResolver Instance { get; private set; }
@@ -9,11 +10,11 @@ public class ColorResolver : MonoBehaviour
     public Color greenColor;
     public Color blueColor;
 
-    void Start()
+    void Awake()
     {
         Instance = this;
     }
-
+   
     public Color ResolveColor(ColorizationColors color)
     {
         switch (color)

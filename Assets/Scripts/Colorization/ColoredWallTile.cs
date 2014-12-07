@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class ColoredWallTile : MonoBehaviour
 {
     public ColorizationColors tileColor = ColorizationColors.Red;
@@ -23,6 +24,14 @@ public class ColoredWallTile : MonoBehaviour
         TileColor = tileColor;
         levelStateController = transform.parent.gameObject.GetComponent<LevelStateController>();
         levelStateController.OnPlayerColorChanged += PlayerColorChanged;
+    }
+
+    void Update()
+    {
+        if (Application.isEditor)
+        {
+            TileColor = tileColor;
+        }
     }
 
     void Destroy()
