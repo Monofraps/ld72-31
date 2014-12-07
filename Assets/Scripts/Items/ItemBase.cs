@@ -5,6 +5,15 @@ public abstract class ItemBase : MonoBehaviour
 {
     public string itemName;
     public Sprite itemSprite;
+    public bool activateOnStart;
+
+    void Start()
+    {
+        if (activateOnStart)
+        {
+            Activate();
+        }
+    }
 
     public string GetDisplayName()
     {

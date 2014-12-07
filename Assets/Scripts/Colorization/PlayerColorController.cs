@@ -10,7 +10,7 @@ public class PlayerColorController : MonoBehaviour
         get { return playerColor; }
         set
         {
-            if(value != playerColor)
+            if (value != playerColor)
             {
                 playerColor = value;
                 ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(playerColor);
@@ -18,4 +18,29 @@ public class PlayerColorController : MonoBehaviour
             }
         }
     }
+
+    void Update()
+    {
+        if (Application.isEditor)
+        {
+
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.T))
+            {
+                PlayerColor = ColorizationColors.Red;
+            }
+            else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.G))
+            {
+                PlayerColor = ColorizationColors.Green;
+            }
+            else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.B))
+            {
+                PlayerColor = ColorizationColors.Blue;
+            }
+            else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.W))
+            {
+                PlayerColor = ColorizationColors.White;
+            }
+        }
+    }
+
 }
