@@ -74,7 +74,7 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         Vector2 velocity = new Vector2(0, 0);
-
+        
         velocity.x = Input.GetAxis("Horizontal") * speed * (IsControlInverted ? -1 : 1);
         velocity.y = Input.GetAxis("Vertical") * speed * (IsControlInverted ? -1 : 1);
 
