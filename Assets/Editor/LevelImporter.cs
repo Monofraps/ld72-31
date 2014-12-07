@@ -8,6 +8,7 @@ class LevelImporterWindow : EditorWindow
     public GameObject wallPrefab;
     public GameObject coloredWallPrefab;
     public GameObject colorizerPrefab;
+	public GameObject powerupPrefab;
     public GameObject levelRoot;
 
     [MenuItem("LD31/Import Level")]
@@ -24,7 +25,7 @@ class LevelImporterWindow : EditorWindow
 
         if (GUILayout.Button("Import"))
         {
-         levelgen = new LevelGenerator(levelText, wallPrefab, coloredWallPrefab, colorizerPrefab);  
+         levelgen = new LevelGenerator(levelText, wallPrefab, coloredWallPrefab, colorizerPrefab, powerupPrefab, levelRoot);  
             levelgen.readLevel();
         }
 
@@ -43,6 +44,12 @@ class LevelImporterWindow : EditorWindow
         {
             colorizerPrefab = (GameObject)PrefabUtility.GetPrefabParent(Selection.activeObject);
         }
+
+		if (GUILayout.Button("Set Powerup Field Prefab"))
+		{
+			powerupPrefab = (GameObject)PrefabUtility.GetPrefabParent(Selection.activeObject);
+		}
+
 
         if (GUILayout.Button("Set Level Root"))
         {
