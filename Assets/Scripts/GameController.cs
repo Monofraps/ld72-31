@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -9,9 +10,12 @@ public class GameController : MonoBehaviour
 
     public GameObject player;
     public List<GameObject> levelPrefabs;
+    public Text timerText;
 
     private LevelStateController currentLevel;
     private int currentLevelIndex = 0;
+
+    private double timer = 0;
 
     private void Awake()
     {
@@ -30,6 +34,11 @@ public class GameController : MonoBehaviour
         {
             RestartLevel();
         }
+
+        timer += Time.deltaTime;
+
+        int minutes = Mathf.FloorToInt((float) (timer/60f));
+        timerText.text = String.Format("{0}:{1:00.0}", minutes, (timer - minutes * 60f));
     }
 
     public void PublishPlayerColorChangeEvent(ColorizationColors newPlayerColor)
