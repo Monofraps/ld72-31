@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FollowPath : MonoBehaviour
 {
-    public float speed;
+    public float Speed{ get; set; }
     public PathDefinition path;
     private int targetPoint;
     private enum Direction
@@ -33,7 +33,7 @@ public class FollowPath : MonoBehaviour
             return;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, path.points [targetPoint], speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, path.points [targetPoint], Speed * Time.deltaTime);
         if (transform.position.x == path.points [targetPoint].x &&
             transform.position.y == path.points [targetPoint].y )
         {

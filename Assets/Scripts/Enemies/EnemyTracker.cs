@@ -6,21 +6,38 @@ public class EnemyTracker : MonoBehaviour
 {
     public static EnemyTracker Instance { get; private set; }
 
-    public List<GameObject> enemyTypes; 
 
-    private List<EnemyBase> enemies = new List<EnemyBase>();
-        
-    void Start()
+    private EnemyControler[] enemies;
+
+    private void Awake()
     {
         Instance = this;
     }
- 
-    public List<EnemyBase> GetAllEnemies()
+
+    public void LoadEnemies(GameObject levelRoot)
     {
-        return enemies;
+        enemies = levelRoot.GetComponentsInChildren<EnemyControler>();
+    }
+        
+    public void FreezeAllEnemies(float duration)
+    {
+        foreach(EnemyControler ec in enemies)
+        {
+            ec.Frozen = true;
+        }
+        Invoke("UnfreezeAllEnemies", duration);
     }
 
-    public void SpawnEnemy(Vector3 spawnPoint, Quaternion initialRotation)
+    private void UnfreezeAllEnemies()
+    {
+        foreach(EnemyControler ec in enemies)
+        {
+            ec.Frozen = false;
+        }
+    }
+ 
+
+    /*public void SpawnEnemy(Vector3 spawnPoint, Quaternion initialRotation)
     {
         GameObject enemyType = enemyTypes[Random.Range(0, enemyTypes.Count)];
 
@@ -33,5 +50,5 @@ public class EnemyTracker : MonoBehaviour
         }
 
         enemies.Add(enemy);
-    }
+    }*/
 }
