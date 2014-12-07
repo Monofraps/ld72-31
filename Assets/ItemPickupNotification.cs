@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class ItemPickupNotification : MonoBehaviour
 {
-    public static ItemPickupNotification Instance { get; private set; }
-
     public Text text;
     public Image itemImage;
 
@@ -16,7 +14,6 @@ public class ItemPickupNotification : MonoBehaviour
 
     void Start()
     {
-        Instance = this;
         text.text = "";
         itemImage.gameObject.SetActive(false);
     }
@@ -29,6 +26,14 @@ public class ItemPickupNotification : MonoBehaviour
         isDisplaying = true;
     }
 
+    public void ClosePickupNotification()
+    {
+        text.text = "";
+        itemImage.gameObject.SetActive(false);
+        elapsedTime = 0;
+        isDisplaying = false;
+    }
+    /*
     void Update()
     {
         if (!isDisplaying)
@@ -40,10 +45,7 @@ public class ItemPickupNotification : MonoBehaviour
 
         if (elapsedTime >= showDuration)
         {
-            text.text = "";
-            itemImage.gameObject.SetActive(false);
-            elapsedTime = 0;
-            isDisplaying = false;
+            HidePickupNotification();
         }
-    }
+    }*/
 }

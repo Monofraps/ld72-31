@@ -12,6 +12,7 @@ public class LevelGenerator
     public GameObject wallTileCollered;
     public GameObject colorizeField;
 	public GameObject pickUpItem;
+    public GameObject spawnPoint;
 	public GameObject parent;
 
     public LevelGenerator(string levelName, GameObject wallTile, GameObject wallTileCollered, GameObject colorizeField, GameObject pickUpItem, GameObject parent)
@@ -84,10 +85,16 @@ public class LevelGenerator
                         forCollering.GetComponent<ColorizerField>().fieldColor = ColorizationColors.Blue;
 					forCollering.transform.parent = parent.transform;
                         break;
-				case 'I':
+				    case 'I':
 					forCollering = (GameObject)GameObject.Instantiate(pickUpItem, new Vector3(countX, -countY, 0), Quaternion.identity);
 					forCollering.transform.parent = parent.transform;
 					break;
+                    case 'S':
+                        forCollering = new GameObject("SpawnPoint");
+                        forCollering.transform.position = new Vector3(countX, -countY, 0);
+                        forCollering.tag = "SpawnPoint";
+                        forCollering.transform.parent = parent.transform;
+                        break;
 
                 }
                 countX++;

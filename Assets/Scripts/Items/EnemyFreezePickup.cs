@@ -7,14 +7,14 @@ public class EnemyFreezePickup : ItemBase
 
     private EnemyTracker enemyTracker;
 
-    void Start()
+    public override void Activate()
     {
         enemyTracker = EnemyTracker.Instance;
         if (enemyTracker == null)
         {
             throw new UnityException("No EnemyTracker in scene");
         }
-
+        
         enemyTracker.FreezeAllEnemies(duration);
         Destroy(gameObject);
     }

@@ -6,9 +6,9 @@ public class SpeedUpItem : ItemBase
 
     public float speedMultiplier;
     public float duration;
-    private PlayerControler playerControler;
-    
-    void Start()
+    private PlayerControler playerControler;   
+
+    public override void Activate()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)

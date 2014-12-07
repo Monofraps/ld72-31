@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemBase : MonoBehaviour
+public abstract class ItemBase : MonoBehaviour
 {
     public string itemName;
     public Sprite itemSprite;
@@ -15,4 +15,6 @@ public class ItemBase : MonoBehaviour
     {
         return itemSprite;
     }
+
+    public abstract void Activate();
 }

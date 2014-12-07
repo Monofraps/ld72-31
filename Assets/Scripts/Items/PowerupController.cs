@@ -1,13 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PowerupController : MonoBehaviour {
-	public ItemRegistry itemRegistry;
-    public ItemPickupNotification pickupNotification;
+public class PowerupController : MonoBehaviour
+{
+    public ItemPickupNotification pickupUI;
 
-	public void InstantiatePowerup(){
-		GameObject powerUp = itemRegistry.GetRandomPrefab();
-		ItemBase powerupInstance = ((GameObject)Instantiate (powerUp)).GetComponent<ItemBase>();
-        pickupNotification.ShowPickupNotification(powerupInstance);
-	}
+    private ItemBase currentItem;
+    public ItemBase CurrentItem
+    {
+        set
+        {
+            currentItem = value;
+            if(currentItem)
+            {
+                pickupUI.ShowPickupNotification(currentItem);
+            }
+        }
+        get
+        {
+            return currentItem;
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (CurrentItem)
+            {
+                CurrentItem.Activate();
+                pickupUI.ClosePickupNotification();
+                CurrentItem = null;
+
+            }
+        }
+    }
+
+    
 }

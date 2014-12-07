@@ -11,14 +11,15 @@ public class PickupField : MonoBehaviour {
         {
             if(powerUp == null)
             {
-                throw new UnityException("No power up set for PickupField x=" + transform.position.x + " y=" + transform.position.y);
+                Debug.LogError("No power up set for PickupField x=" + transform.position.x + " y=" + transform.position.y);
+                return;
             }
             GameObject obj = (GameObject)Instantiate(powerUp);
-            ItemPickupNotification.Instance.ShowPickupNotification(obj.GetComponent<ItemBase>());
-            /*
+            ItemBase item = obj.GetComponent<ItemBase>();
+
             PowerupController powerupController = collision.gameObject.GetComponent<PowerupController>();
-            powerupController.InstantiatePowerup();
-            */
+            powerupController.CurrentItem = item;
+
             GameObject.Destroy(gameObject);
 
         }
