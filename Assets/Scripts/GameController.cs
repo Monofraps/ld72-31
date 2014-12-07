@@ -8,9 +8,12 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
+    public int Coins { get; set; }
+
     public GameObject player;
     public List<GameObject> levelPrefabs;
     public Text timerText;
+    public Text coinCounterText;
 
     private LevelStateController currentLevel;
     private int currentLevelIndex = 0;
@@ -39,6 +42,8 @@ public class GameController : MonoBehaviour
 
         int minutes = Mathf.FloorToInt((float) (timer/60f));
         timerText.text = String.Format("{0}:{1:00.0}", minutes, (timer - minutes * 60f));
+
+        coinCounterText.text = String.Format("{0}", Coins);
     }
 
     public void PublishPlayerColorChangeEvent(ColorizationColors newPlayerColor)
