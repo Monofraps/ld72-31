@@ -25,7 +25,7 @@ public class ColorizerField : MonoBehaviour
         {
             if (collider.OverlapPoint(new Vector2(transform.position.x, transform.position.y)))
             {
-                collider.gameObject.GetComponent<PlayerColorController>().PlayerColor = fieldColor;
+                collider.gameObject.GetComponentInChildren<PlayerColorController>().PlayerColor = fieldColor;
             }
 
         }

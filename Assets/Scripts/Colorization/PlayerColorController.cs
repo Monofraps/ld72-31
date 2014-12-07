@@ -13,6 +13,7 @@ public class PlayerColorController : MonoBehaviour
             if (value != playerColor)
             {
                 playerColor = value;
+
                 ((SpriteRenderer)renderer).color = ColorResolver.Instance.ResolveColor(playerColor);
                 GameController.Instance.PublishPlayerColorChangeEvent(playerColor);
             }

@@ -8,6 +8,8 @@ public class PlayerControler : MonoBehaviour
 
     private Rigidbody2D playerRigidbody2d;
     private Animator animator;
+    private PlayerWiggle playerWiggle;
+    private Vector3 teleportPos;
     private float rotation;
     public GameObject shieldObject;
     private bool shield;
@@ -37,6 +39,20 @@ public class PlayerControler : MonoBehaviour
             throw new UnityException("No PlayerControler attached to Player Gameobject.");
         }
         return playerControler;
+
+    }
+
+    public void Teleport(Vector3 pos)
+    {
+        teleportPos = pos;
+        animator.SetTrigger("Portal Entered");
+        Invoke("TeleportAnimCallback", 2.0f); // Animation lasts 2 seconds;
+    }
+
+    private void TeleportAnimCallback()
+    {
+        transform.position = teleportPos;
+        teleportPos = Vector3.zero;
     }
 
 
@@ -44,9 +60,12 @@ public class PlayerControler : MonoBehaviour
     void Start()
     {
         playerRigidbody2d = rigidbody2D;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
+        playerWiggle = GetComponentInChildren<PlayerWiggle>();
         Shield = false;
     }
+
+
 
     
     // Update is called once per frame
@@ -72,7 +91,7 @@ public class PlayerControler : MonoBehaviour
             velocity.y = -speed;
         }
         playerRigidbody2d.velocity = velocity;
-        transform.rotation = Quaternion.Euler(new Vector3(0,0, rotation + rotationOffset));
+        transform.rotation = Quaternion.Euler(new Vector3(0,0, rotation + playerWiggle.rotationOffset));
 
 
         animator.SetFloat("Velocity", Mathf.Abs(velocity.x + velocity.y));
