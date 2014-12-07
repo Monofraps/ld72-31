@@ -65,11 +65,12 @@ public class GameController : MonoBehaviour
 
     public void RestartLevel()
     {
-        currentLevel.gameObject.SetActive(false);
-        Destroy(currentLevel.gameObject);
-        LoadLevel();
-        player.GetComponent<PlayerColorController>().PlayerColor = ColorizationColors.White;
-    }
+				currentLevel.gameObject.SetActive (false);
+				Destroy (currentLevel.gameObject);
+				LoadLevel ();
+				player.GetComponent<PlayerColorController> ().PlayerColor = ColorizationColors.White;
+				player.GetComponent<PowerupController> ().CurrentItem = null;
+		}
 
     public void ProgressLevel()
     {

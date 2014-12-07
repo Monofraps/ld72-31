@@ -14,7 +14,10 @@ public class PowerupController : MonoBehaviour
             if(currentItem)
             {
                 pickupUI.ShowPickupNotification(currentItem);
-            }
+            }else{
+				pickupUI.ClosePickupNotification();
+			}
+
         }
         get
         {
