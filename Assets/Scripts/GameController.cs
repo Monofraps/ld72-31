@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
 
         currentLevel = ((GameObject)Instantiate(levelPrefabs[currentLevelIndex])).GetComponent<LevelStateController>();
         EnemyTracker.Instance.LoadEnemies(currentLevel.gameObject);
-        player.GetComponent<PlayerColorController>().PlayerColor = ColorizationColors.White;
+        player.GetComponentInChildren<PlayerColorController>().PlayerColor = ColorizationColors.White;
 
 
         // Find and set spawnpoint
@@ -107,7 +107,7 @@ public class GameController : MonoBehaviour
 				currentLevel.gameObject.SetActive (false);
 				Destroy (currentLevel.gameObject);
 				LoadLevel ();
-				player.GetComponent<PlayerColorController> ().PlayerColor = ColorizationColors.White;
+				player.GetComponentInChildren<PlayerColorController> ().PlayerColor = ColorizationColors.White;
 				player.GetComponent<PowerupController> ().CurrentItem = null;
 		}
 

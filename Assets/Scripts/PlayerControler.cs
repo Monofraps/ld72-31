@@ -30,7 +30,7 @@ public class PlayerControler : MonoBehaviour
 
     public static PlayerControler FindInScene()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.Find("Snowman");
         if (player == null)
         {
             throw new UnityException("No player found in the scene.");
