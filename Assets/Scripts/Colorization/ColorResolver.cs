@@ -14,24 +14,32 @@ public class ColorResolver : MonoBehaviour
     {
         Instance = this;
     }
-   
+
     public Color ResolveColor(ColorizationColors color)
     {
         switch (color)
         {
-                case ColorizationColors.Red:
+            case ColorizationColors.Red:
                 return redColor;
 
-                case ColorizationColors.Green:
+            case ColorizationColors.Green:
                 return greenColor;
 
-                case ColorizationColors.Blue:
+            case ColorizationColors.Blue:
                 return blueColor;
 
-                case ColorizationColors.White:
+            case ColorizationColors.White:
                 return Color.white;
         }
 
         throw new UnityException("Unexpected control flow.");
+    }
+
+    void Update()
+    {
+        if (Application.isEditor && !Instance)
+        {
+            Instance = this;
+        }
     }
 }

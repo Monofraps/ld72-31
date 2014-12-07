@@ -21,7 +21,15 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        LoadNextLevel();
+        LoadLevel();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.R))
+        {
+            RestartLevel();
+        }
     }
 
     public void PublishPlayerColorChangeEvent(ColorizationColors newPlayerColor)
@@ -29,18 +37,29 @@ public class GameController : MonoBehaviour
         currentLevel.PublishPlayerColorChangeEvent(newPlayerColor);
     }
 
-    private void LoadNextLevel()
+    private void LoadLevel()
     {
+        if (currentLevelIndex >= levelPrefabs.Count)
+        {
+            return;
+        }
+
         currentLevel = ((GameObject)Instantiate(levelPrefabs[currentLevelIndex])).GetComponent<LevelStateController>();
         EnemyTracker.Instance.LoadEnemies(currentLevel.gameObject);
+
         // Find and set spawnpoint
         foreach (Transform t in currentLevel.transform)
         {
-            if(t.tag == "SpawnPoint")
+            if (t.tag == "SpawnPoint")
             {
                 player.transform.position = t.position;
             }
 
+        }
+
+        if (currentLevelIndex == levelPrefabs.Count - 1)
+        {
+            player.SetActive(false);
         }
     }
 
@@ -48,7 +67,7 @@ public class GameController : MonoBehaviour
     {
         currentLevel.gameObject.SetActive(false);
         Destroy(currentLevel.gameObject);
-        LoadNextLevel();
+        LoadLevel();
         player.GetComponent<PlayerColorController>().PlayerColor = ColorizationColors.White;
     }
 
@@ -57,6 +76,6 @@ public class GameController : MonoBehaviour
         currentLevel.gameObject.SetActive(false);
         Destroy(currentLevel.gameObject);
         ++currentLevelIndex;
-        LoadNextLevel();
+        LoadLevel();
     }
 }
