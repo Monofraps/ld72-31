@@ -96,6 +96,7 @@ public class GameController : MonoBehaviour
 
         pointsText.IsVisible = true;
         pointsText.SetPoints(123456);
+        pointsText.SetDiamonds(coins, 10000);
     }
 
     private bool IsLastLevel()
