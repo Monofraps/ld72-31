@@ -60,120 +60,120 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 111
-        height: 185
+        width: 112
+        height: 187
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_1
       rect:
         serializedVersion: 2
-        x: 117
+        x: 118
         y: 0
-        width: 112
-        height: 188
+        width: 113
+        height: 189
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_2
       rect:
         serializedVersion: 2
-        x: 235
+        x: 237
         y: 0
-        width: 112
-        height: 195
+        width: 113
+        height: 196
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_3
       rect:
         serializedVersion: 2
-        x: 353
+        x: 356
         y: 0
         width: 113
-        height: 194
+        height: 196
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_4
       rect:
         serializedVersion: 2
-        x: 471
+        x: 475
         y: 0
         width: 113
-        height: 199
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_5
       rect:
         serializedVersion: 2
-        x: 590
+        x: 594
         y: 0
-        width: 112
-        height: 195
+        width: 113
+        height: 196
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_6
       rect:
         serializedVersion: 2
-        x: 708
+        x: 713
         y: 0
         width: 113
-        height: 200
+        height: 199
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_7
       rect:
         serializedVersion: 2
-        x: 826
+        x: 831
         y: 0
-        width: 112
-        height: 197
+        width: 114
+        height: 198
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_8
       rect:
         serializedVersion: 2
-        x: 943
+        x: 950
         y: 0
         width: 113
-        height: 192
+        height: 193
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_9
       rect:
         serializedVersion: 2
-        x: 1062
+        x: 1071
         y: 0
-        width: 112
-        height: 190
+        width: 111
+        height: 189
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_10
       rect:
         serializedVersion: 2
-        x: 1181
+        x: 1189
         y: 0
         width: 112
-        height: 179
+        height: 186
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Enemyflameanim_11
       rect:
         serializedVersion: 2
-        x: 1298
+        x: 1306
         y: 0
-        width: 111
-        height: 187
+        width: 112
+        height: 186
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
