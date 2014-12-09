@@ -125,6 +125,7 @@ public class GameController : MonoBehaviour
 
     public void ProgressLevel()
     {
+		addedCoins = 0;
         currentLevel.gameObject.SetActive(false);
         Destroy(currentLevel.gameObject);
         ++currentLevelIndex;
