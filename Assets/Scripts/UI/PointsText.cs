@@ -14,9 +14,10 @@ public class PointsText : HidableUIText
         IsVisible = false;
     }
 
-    public void SetPoints(int points)
+    public void SetPoints(double seconds)
     {
-        pointsText.text = points.ToString();
+        int minutes = Mathf.FloorToInt((float)(seconds / 60f));
+        pointsText.text = String.Format("{0}:{1:00.0}", minutes, (seconds - minutes * 60f));
     }
 
     public void SetDiamonds(int collectedDiamonds, int totalDiamonds)

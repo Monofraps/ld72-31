@@ -49,6 +49,11 @@ public class GameController : MonoBehaviour
             RestartLevel();
         }
 
+        if (Application.isEditor && Input.GetKeyDown(KeyCode.P))
+        {
+            ProgressLevel();
+        }
+
         timer += Time.deltaTime;
 
         timerText.SetTimeInSeconds((float)timer);
@@ -95,8 +100,8 @@ public class GameController : MonoBehaviour
         coinCounterText.IsVisible = false;
 
         pointsText.IsVisible = true;
-        pointsText.SetPoints(123456);
-        pointsText.SetDiamonds(coins, 10000);
+        pointsText.SetPoints(timer);
+        pointsText.SetDiamonds(coins, 10);
     }
 
     private bool IsLastLevel()
