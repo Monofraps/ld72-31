@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
 
     private int coins = 0;
+	private int addedCoins;
 
     public int Coins
     {
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
         set
         {
             coins = value;
+			++addedCoins;
             coinCounterText.SetCoinCount(coins);
         }
     }
@@ -111,12 +113,15 @@ public class GameController : MonoBehaviour
 
     public void RestartLevel()
     {
-				currentLevel.gameObject.SetActive (false);
-				Destroy (currentLevel.gameObject);
-				LoadLevel ();
-				player.GetComponentInChildren<PlayerColorController> ().PlayerColor = ColorizationColors.White;
-				player.GetComponent<PowerupController> ().CurrentItem = null;
-		}
+		currentLevel.gameObject.SetActive (false);
+		Destroy (currentLevel.gameObject);
+		LoadLevel ();
+		player.GetComponentInChildren<PlayerColorController> ().PlayerColor = ColorizationColors.White;
+		player.GetComponent<PowerupController> ().CurrentItem = null;
+		coins -= addedCoins;
+		addedCoins = 0;
+		coinCounterText.SetCoinCount(coins);
+	}
 
     public void ProgressLevel()
     {
